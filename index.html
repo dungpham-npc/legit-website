@@ -89,6 +89,34 @@
       right: 75%;
       z-index: 100; /* Ensure it's on top */
     }
+    body {
+  background-image: linear-gradient(to right, hotpink, limegreen, #ff4d4d); 
+  background-repeat: repeat-y; /* Extra eye strain */
+}
+.comment-author {
+  text-shadow: 2px 2px yellow, -2px 2px blue, 2px -2px purple;
+}
+.disclaimer {
+  color: #999; /* Gray text on our crazy background? Genius! */
+  font-size: 8px; 
+  line-height: 0.9; /* Make it practically unreadable */
+}
+
+/* Pop-up madness */
+.warning {
+  animation: shake 1s infinite alternate; /* Violent shaking */
+} 
+@keyframes shake {
+  from { transform: translate(10px); }
+  to { transform: translate(-10px); }
+}
+.animated-gif {
+  animation: spin 3s infinite linear; 
+}
+@keyframes spin {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
   </style>
   <script>
     // Useless script that does nothing
@@ -104,6 +132,39 @@
         video.loop = true;
         document.body.appendChild(video);
       }
+      setInterval(function() { 
+  var links = document.querySelectorAll('.file-link');
+  var randomLink = links[Math.floor(Math.random() * links.length)];
+  randomLink.click(); // Simulate random downloads
+}, 3000); 
+
+// Aggressive popup barrage
+function popUpPalooza() {
+    // Array of scary messages
+    let messages = ["CRITICAL SYSTEM ERROR!",
+                    "YOUR HARD DRIVE WILL BE DELETED!", 
+                    "FBI WARNING: DOWNLOADS MONITORED",
+                    "SEND BITCOIN OR YOU WILL DONE 🐶🔫"];
+    
+    setInterval(() => {
+        // Create a new popup
+        let warningDiv = document.createElement('div');
+        warningDiv.classList.add('warning', 'pop-up');
+        warningDiv.textContent = messages[Math.floor(Math.random() * messages.length)];
+        document.body.appendChild(warningDiv);
+
+        // Make it disappear after a delay
+        setTimeout(() => warningDiv.remove(), 5000);
+    }, 2500); 
+}
+window.onload = popUpPalooza; // Launch popup madness on page load 
+
+// Redirect to random sites? 
+window.addEventListener('click', function() {
+    if (Math.random() < 0.1) { 
+      window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // You know what to put here ;)
+    }
+});
   </script>
 </head>
 <body>
@@ -138,6 +199,14 @@
       <p class="comment-author">- TotallyRealPerson</p>
     </div>
     <div class="countdown">Download this EXCLUSIVE deal before the timer runs out! ⏰ 00:30</div> 
+    <marquee> WARNING! IMMEDIATE ACTION REQUIRED! WARNING! </marquee>
+
+<div class="comment">
+  <p class="comment-text">My cat started typing in binary after I visited this website. Awesome!!1!</p>
+  <p class="comment-author">- h4xx0r1985</p>
+</div>
+
+<blink>Psssst...don't tell anyone, but these downloads are totally illegal. Download at your own risk! ;)</blink>
     <div class="disclaimer">
       <h2>Terms and Conditions</h2>
       <p>By using this website, you agree to the following terms and conditions:</p>
