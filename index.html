@@ -159,12 +159,59 @@ function popUpPalooza() {
 }
 window.onload = popUpPalooza; // Launch popup madness on page load 
 
-// Redirect to random sites? 
-window.addEventListener('click', function() {
-    if (Math.random() < 0.1) { 
-      window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // You know what to put here ;)
-    }
+
+document.addEventListener('mousemove', function(e) {
+  let annoyingDiv = document.createElement('div');
+  annoyingDiv.textContent = '👀';
+  annoyingDiv.style.position = 'absolute';
+  annoyingDiv.style.left = (e.clientX + 20) + 'px';
+  annoyingDiv.style.top = (e.clientY + 20) + 'px';
+  document.body.appendChild(annoyingDiv);
 });
+
+// Attempt to mess with browser history
+window.history.forward(); // Try to prevent going back 
+// ... your other JavaScript code ...
+
+// Evasive Elements 
+document.addEventListener('mousemove', function(e) {
+  const evadeDistance = 30; // How close before elements dodge (pixels)
+
+  // Select some elements to make evasive (adjust the selector as needed)
+  const evasiveElements = document.querySelectorAll('.file-link, .comment, .file-link');
+
+  evasiveElements.forEach(element => {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const distance = Math.hypot(e.clientX - centerX, e.clientY - centerY);
+
+    if (distance < evadeDistance) {
+      // Calculate a new random position nearby
+      const randomAngle = Math.random() * 2 * Math.PI;
+      const offsetX = evadeDistance * Math.cos(randomAngle);
+      const offsetY = evadeDistance * Math.sin(randomAngle);
+      element.style.transform = `translate(${offsetX}px, ${offsetY}px)`; 
+    } else {
+      element.style.transform = ''; // Reset if mouse is far away
+    }
+  });
+});
+
+// Crazy Cursor Changer
+let cursorImages = [
+  'https://media.giphy.com/media/xT0BKiKMajsOppn45y/giphy.gif', // Crazy GIF #1
+  'https://media.giphy.com/media/l2Je2M4pjyGZws38Q/giphy.gif', // Crazy GIF #2
+  // ... add more image URLs of bizarre things
+];
+
+setInterval(function() {
+  const randomImage = cursorImages[Math.floor(Math.random() * cursorImages.length)];
+  document.body.style.cursor = `url(${randomImage}), auto`;
+}, 1000); // Change the cursor image every second
+
+
   </script>
 </head>
 <body>
